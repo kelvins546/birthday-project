@@ -1,122 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from "react";
+import Landing from "./sections/Landing";
+import Timeline from "./sections/Timeline";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [hasStarted, setHasStarted] = useState(false);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen w-full flex flex-col bg-(--bg) transition-colors duration-500">
+      {!hasStarted ? (
+        /* Prelude Screen Entry */
+        <Landing onStart={() => setHasStarted(true)} />
+      ) : (
+        /* The main story scrolling layout */
+        <div className="w-full flex flex-col opacity-0 animate-[fadeIn_1s_ease-out_forwards]">
+          {/* Persistent Romantic Global Header */}
+          <header className="py-4 px-6 border-b border-(--border) sticky top-0 bg-(--bg)/80 backdrop-blur-md z-50 flex justify-between items-center shadow-(--shadow)">
+            <span className="font-heading font-medium tracking-wide text-header flex items-center gap-1.5 text-sm">
+              Our Memory Sandbox <span className="animate-pulse">✨</span>
+            </span>
+            <div className="text-xs font-mono text-(--accent) bg-(--accent-bg) px-2.5 py-1 rounded-sm border border-(--accent-border)">
+              06.15.2026
+            </div>
+          </header>
 
-      <div className="ticks"></div>
+          {/* Sequential Section Injections */}
+          <main className="flex-1 w-full">
+            <Timeline />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            {/* Future placeholders */}
+            <div className="py-20 text-center text-sm font-mono tracking-wider opacity-30 border-b border-(--border)">
+              Chapter II: Vault Grid Loading...
+            </div>
+          </main>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          <footer className="py-8 text-center text-xs font-mono text-custom/40 border-t border-(--border)">
+            Built from scratch for you. Base v1.0.0 ❤️
+          </footer>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;

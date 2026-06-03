@@ -1,3 +1,23 @@
+/* Inject Tailwind v4 Engine */
+@import "tailwindcss";
+
+/* Map your custom variables to Tailwind utilities */
+@theme {
+  --color-text-custom: var(--text);
+  --color-text-header: var(--text-h);
+  --color-bg-custom: var(--bg);
+  --color-border-custom: var(--border);
+  --color-code-bg: var(--code-bg);
+  --color-accent: var(--accent);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-border: var(--accent-border);
+  --color-social-bg: var(--social-bg);
+
+  --font-sans: var(--sans);
+  --font-heading: var(--heading);
+  --font-mono: var(--mono);
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -11,8 +31,8 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -52,6 +72,8 @@
 
 body {
   margin: 0;
+  background: var(--bg);
+  color: var(--text);
 }
 
 #root {
@@ -82,6 +104,7 @@ h1 {
     margin: 20px 0;
   }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
@@ -91,6 +114,7 @@ h2 {
     font-size: 20px;
   }
 }
+
 p {
   margin: 0;
 }
