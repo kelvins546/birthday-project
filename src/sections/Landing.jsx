@@ -10,7 +10,7 @@ function Landing({ onStart }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.6 }}
         transition={{ duration: 2.5, ease: "easeOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] max-w-[1000px] max-h-[1000px] rounded-full bg-linear-to-tr from-(--accent-bg) to-pink-500/10 blur-[100px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vw] max-w-250 max-h-250 rounded-full bg-linear-to-tr from-(--accent-bg) to-pink-500/10 blur-[100px] pointer-events-none"
       />
 
       <div className="relative z-10 max-w-3xl w-full text-center flex flex-col items-center justify-center mt-[-5vh] gap-12 sm:gap-16">

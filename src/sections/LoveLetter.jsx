@@ -110,7 +110,7 @@ function LoveLetter() {
 
         {/* The "Catch Me" Yes/No Game Buttons */}
         <motion.div
-          className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 relative min-h-[120px] w-full"
+          className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 relative min-h-30 w-full"
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}

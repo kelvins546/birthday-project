@@ -14,16 +14,16 @@ function Interactive() {
   // --- STATE FOR "REASONS WHY" GENERATOR ---
   const [reasonIndex, setReasonIndex] = useState(0);
   const reasons = [
-    "The way your mind works. I love how brilliant you are, even on the days you doubt yourself.",
-    "The absolute peace I feel when I'm with you. You make the loudest, most stressful days go quiet.",
-    "You never have to pretend with me. I love every version of you, especially when you feel like you aren't at your best.",
-    "How incredibly driven and capable you are. I am always silently cheering you on and so proud of you.",
-    "Our conversations. I can talk to you about absolutely nothing or everything, and it always feels like home.",
-    "The effortless way you make me smile, even when I'm completely exhausted.",
-    "Your endless patience and understanding. You always know exactly how to comfort me without even trying.",
-    "The fact that you are more than enough, exactly as you are. You never have to prove anything to me.",
-    "How safe I feel opening up to you. You are the easiest person to talk to in the entire world.",
-    "Just the simple fact that out of everyone I could have met, I got lucky enough to find you. ✨",
+    "the way your mind works. I love your humor and how brilliant you are",
+    "the absolute peace i feel when i'm with you. you make the loudest, most stressful days go quiet",
+
+    "how incredibly driven and capable you are. i am always silently cheering you on and so proud of you",
+    "our conversations. i can talk to you about absolutely nothing or everything, and it always feels like home",
+    "the effortless way you make me smile, even when i'm completely exhausted",
+    "your endless patience and understanding. you always know exactly how to comfort me without even trying",
+    "the fact that you are more than enough, exactly as you are. you never have to prove anything to me",
+    "how safe i feel opening up to you. you are the easiest person to talk to in the entire world",
+    "just the simple fact that out of everyone i could have met, i got lucky enough to find you✨",
   ];
 
   const nextReason = () => {
@@ -46,36 +46,20 @@ function Interactive() {
         "The giligans",
       ],
       correct: 3,
-      correctMsg:
-        "Syempre naman! Alam kong di mo makakalimutan yan hahaha. Kabado pa 'ko nun!",
-      wrongMsg:
-        "Hala siya, paano mo nakalimutan?! Minus points ka sa akin hahaha jk. Sa cafe tayo nun!",
+      correctMsg: "syempre naman! alam kong di mo makakalimutan yan!",
+      wrongMsg: "lah sya, paano mo nakalimutan?! minus points ka sa akin!!!",
     },
     {
-      question: "Sino mas mabilis makatulog pag nanonood ng movie?",
+      question: "Sino mas malakas mantarantado?",
       options: [
-        "Ako, lagi",
-        "Ikaw, walang palya",
-        "Sabay tayo nakakatulog",
-        "Kahit sino, basta horror",
+        "ako, lagi",
+        "ikaw, walang palya",
+        "both of us",
+        "regine velasquez",
       ],
-      correct: 1,
-      correctMsg:
-        "Ayan, inamin din! Lalo na pag horror, tulog ka agad eh hahaha.",
-      wrongMsg: "Weh? Sure ka ba? Ikaw kaya laging unang nakakatulog hahaha!",
-    },
-    {
-      question: "Ano yung unang message ko sayo na nag-start ng lahat?",
-      options: [
-        "'Hello po'",
-        "'Ganda mo po so much hihi'",
-        "'Kumain ka na?'",
-        "Nag-send ng meme",
-      ],
-      correct: 1,
-      correctMsg: "Best 'hihi' I ever sent. Best risk I ever took. ❤️",
-      wrongMsg:
-        "Hala, nakalimutan yung iconic moment ko! 'Ganda mo po so much hihi' kaya yun!",
+      correct: 3,
+      correctMsg: "HAHAHAHAHAHAHAHAHAHA",
+      wrongMsg: "tamo mali mali",
     },
   ];
 
@@ -172,7 +156,7 @@ function Interactive() {
             initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.5 }}
-            className="min-h-[120px] flex items-center justify-center px-4 max-w-2xl"
+            className="min-h-30 flex items-center justify-center px-4 max-w-2xl"
           >
             <p className="text-xl sm:text-2xl font-sans text-custom-80 font-medium italic text-center leading-relaxed">
               "{reasons[reasonIndex]}"
@@ -191,7 +175,7 @@ function Interactive() {
         <div className="w-full h-px bg-linear-to-r from-transparent via-(--border) to-transparent" />
 
         {/* SECTION 2: THE CONVERSATIONAL QUIZ */}
-        <div className="max-w-3xl mx-auto w-full bg-(--code-bg) border border-(--border) rounded-[2rem] p-8 sm:p-12 shadow-xl relative overflow-hidden flex flex-col min-h-[450px]">
+        <div className="max-w-3xl mx-auto w-full bg-(--code-bg) border border-(--border) rounded-4xl p-8 sm:p-12 shadow-xl relative overflow-hidden flex flex-col min-h-112.5">
           <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
             <Sparkles className="w-32 h-32 text-(--accent)" />
           </div>
@@ -311,15 +295,13 @@ function Interactive() {
                         🎉 Perfect Score! 🎉
                       </p>
                       <p className="text-custom-80 text-base leading-relaxed">
-                        Kabisado mo talaga tayo ha! Dahil dyan, promise ko
-                        lilibre kita ng paborito mong pagkain sa next date
-                        natin. Screenshot mo 'to as proof!
+                        kabisado mo talaga tayo ha! dahil dyan, i'll treat you
+                        next time! screenshot mo 'to as proof!
                       </p>
                     </div>
                   ) : (
                     <p className="text-custom-80 text-lg max-w-md mx-auto">
-                      Okay lang yan, bawi ka next time! At least alam kong love
-                      mo pa rin ako hahaha.
+                      okay lang yan, bawi ka next time!
                     </p>
                   )}
                 </motion.div>
@@ -338,7 +320,7 @@ function Interactive() {
             </h2>
             <p className="text-custom-80 text-lg max-w-xl mx-auto">
               Promise mo muna na bubuksan mo lang 'to pag kailangan mo talaga
-              ha. (I mean, pwede mo rin dayain, pero promise muna!)
+              ha.
             </p>
           </div>
 
@@ -353,7 +335,7 @@ function Interactive() {
                 >
                   <motion.div
                     onClick={() => toggleLetter(letter.id)}
-                    className={`cursor-pointer w-full p-8 rounded-3xl border transition-all duration-500 h-full min-h-[220px] flex flex-col items-center justify-center text-center ${
+                    className={`cursor-pointer w-full p-8 rounded-3xl border transition-all duration-500 h-full min-h-55 flex flex-col items-center justify-center text-center ${
                       isOpen
                         ? "bg-(--bg) border-(--accent) shadow-lg"
                         : "bg-(--code-bg) border-(--border) hover:border-(--accent-border) hover:shadow-xl hover:-translate-y-1"
@@ -383,7 +365,7 @@ function Interactive() {
                         <h3 className="font-semibold text-header text-base mb-4 border-b border-(--border) pb-3 w-full shrink-0">
                           {letter.title}
                         </h3>
-                        <div className="overflow-y-auto max-h-[200px] w-full px-1 custom-scrollbar">
+                        <div className="overflow-y-auto max-h-50 w-full px-1 custom-scrollbar">
                           <p className="text-custom-80 text-sm leading-loose italic text-justify">
                             "{letter.content}"
                           </p>

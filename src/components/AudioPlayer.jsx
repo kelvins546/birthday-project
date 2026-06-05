@@ -77,7 +77,7 @@ function AudioPlayer({ playTrigger }) {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="fixed bottom-6 right-6 z-[100]"
+      className="fixed bottom-6 right-6 z-100"
     >
       {/* preload="auto" helps the browser keep the file ready after interruptions */}
       <audio
