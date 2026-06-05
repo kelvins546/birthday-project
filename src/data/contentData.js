@@ -147,9 +147,15 @@ export const BRID_DATA = {
   loveLetter: {
     greeting: "Happy Birthday, Beautiful.",
     paragraphs: [
-      "Today is all about celebrating you. Ever since you came into my life, everything just got brighter. Yung mga simpleng araw, nagiging special core memories just because you're there.",
-      "I built this space from scratch because I wanted to show you how much I value every moment we've shared. Pero higit pa doon, I wanted a special way to be completely honest about how I feel.",
-      "You are so incredibly important to me. Kaya sa special day mong 'to, I want to take a step forward. Gusto kitang ligawan. Gusto kong patunayan sa'yo araw-araw na seryoso ako, and I want to do this right. Sabi ko nga dun sa timeline natin, I am always willing to wait, pero gusto ko lang malaman mo na ikaw na talaga yung gusto ko.",
+      "Today is all about celebrating you. Happy Birthday, love! 🤍 Ever since you came into my life, the ordinary somehow started feeling extraordinary. Yung mga simpleng kwentuhan, random lakad, at kahit tahimik lang tayong magkasama... they became some of my favorite memories because they happened with you.",
+
+      "I made this little space from scratch because I wanted to give you something that wasn't bought or borrowed. Every page, every picture, every memory here was made with one person in mind... ikaw. Pero habang ginagawa ko 'to, may isang bagay akong na-realize. Ang dami ko palang gustong sabihin sa'yo na hindi ko laging nasasabi nang personal.",
+
+      "The truth is, you've become someone incredibly important to me. Hindi ko alam kung kailan eksaktong nangyari, pero dumating na lang ako sa punto na ikaw na yung gusto kong makasama sa mga simpleng araw at sa mga future memories na hindi pa natin nagagawa. Yung tipong kahit walang espesyal na okasyon, basta ikaw yung kasama ko, sapat na. Somehow, you made me realize that love isn't always about grand gestures. Minsan, nasa simpleng pag-uusap, sabayang pagkain, at tahimik na presensya lang pala.",
+
+      "Kaya ngayong birthday mo, gusto kong maging totoo sa nararamdaman ko. Gusto kitang ligawan. Hindi para madaliin ka o bigyan ka ng pressure, kundi para ipakita sa'yo, araw-araw, kung gaano ako kaseryoso. Gusto kong maging taong makakasama mo sa mga ordinaryong araw na unti-unting nagiging paborito nating alaala.",
+
+      "Sabi ko nga sa isa sa mga memories natin, willing akong maghintay. At hanggang ngayon, ganun pa rin. Kasi sa dami ng taong nakilala ko, ikaw pa rin talaga yung gusto kong piliin. Hindi lang ngayon, hindi lang sa birthday mo, kundi sa bawat araw na darating.",
     ],
     closing: "Can I officially court you?",
   },

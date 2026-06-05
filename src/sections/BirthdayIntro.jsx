@@ -7,7 +7,7 @@ function BirthdayIntro({ onNext }) {
     {
       id: 1,
       image: "/images/her-1.jpg",
-      text: "happy birthday to my favorite person. ngayong araw, gusto kong i celebrate yung isa sa pinakamagandang nangyari sa buhay ko, ikaw.",
+      text: "happy birthday to my favorite person. ngayong araw, gusto kong i celebrate yung isa sa pinakamagandang nangyari sa buhay ko, at ikaw yon.",
     },
     {
       id: 2,

@@ -43,9 +43,9 @@ function Interactive() {
         "The cozy corner cafe",
         "The downtown park",
         "Sa fast food spot",
-        "The arcade",
+        "The giligans",
       ],
-      correct: 0,
+      correct: 3,
       correctMsg:
         "Syempre naman! Alam kong di mo makakalimutan yan hahaha. Kabado pa 'ko nun!",
       wrongMsg:
@@ -95,7 +95,7 @@ function Interactive() {
     }
   };
 
-  // --- STATE FOR OPEN WHEN LETTERS (Expanded to 9 Cards) ---
+  // --- STATE FOR OPEN WHEN LETTERS ---
   const [openedLetters, setOpenedLetters] = useState([]);
 
   const letters = [
@@ -111,7 +111,6 @@ function Interactive() {
       content:
         "hi lovee, pahinga muna. alam kong minsan parang ang bigat bigat ng lahat, pero please don't be too hard on yourself. hindi mo kailangan maging strong palagi. Ppwede kang mapagod, umiyak, o magpahinga. and kapag feeling mo wala kang kakampi, tandaan mo na meron kang ako. i'll always be on your side, palagi.",
     },
-
     {
       id: 4,
       title: "When You Can't Sleep",
@@ -136,7 +135,6 @@ function Interactive() {
       content:
         "i know you're trying your best, and sobrang proud ako sayo. pero wag mong kalimutan na tao ka lang din at hindi mo kailangang pasanin lahat, love. hindi ka failure dahil napagod ka. you're simply human. and whatever happens, i'll still be proud of you.",
     },
-
     {
       id: 9,
       title: "When You're Happy",
@@ -153,153 +151,198 @@ function Interactive() {
     }
   };
 
+  // Calculate progress bar percentage
+  const progressPercentage =
+    ((currentQ + (quizState === "feedback" ? 1 : 0)) / quizData.length) * 100;
+
   return (
-    <section className="w-full py-24 px-6 bg-(--bg) border-b border-(--border)">
-      <div className="max-w-4xl mx-auto flex flex-col gap-24">
+    <section className="w-full py-32 px-6 bg-(--bg) border-b border-(--border)">
+      <div className="max-w-4xl mx-auto flex flex-col gap-32">
         {/* SECTION 1: REASONS WHY GENERATOR */}
         <div className="text-center flex flex-col items-center">
-          <span className="text-xs uppercase tracking-widest font-mono text-(--accent) bg-(--accent-bg) px-3 py-1 rounded-full mb-4">
+          <span className="text-xs uppercase tracking-widest font-mono text-(--accent) bg-(--accent-bg) px-4 py-1.5 rounded-full mb-6">
             Just A Reminder
           </span>
-          <h2 className="text-3xl font-heading font-bold text-header mb-8">
+          <h2 className="text-4xl font-heading font-bold text-header mb-10 tracking-tight">
             Why is it always you?
           </h2>
 
           <motion.div
             key={reasonIndex}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="h-24 flex items-center justify-center px-4 max-w-2xl"
+            initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.5 }}
+            className="min-h-[120px] flex items-center justify-center px-4 max-w-2xl"
           >
-            <p className="text-xl sm:text-2xl font-sans text-(--accent) font-medium italic text-center drop-shadow-sm">
+            <p className="text-xl sm:text-2xl font-sans text-custom-80 font-medium italic text-center leading-relaxed">
               "{reasons[reasonIndex]}"
             </p>
           </motion.div>
 
           <button
             onClick={nextReason}
-            className="mt-6 flex items-center gap-2 px-6 py-3 bg-(--code-bg) border border-(--border) rounded-full hover:border-(--accent) transition-colors text-custom-80 hover:text-(--accent) cursor-pointer group"
+            className="mt-8 flex items-center gap-3 px-8 py-4 bg-(--code-bg) border border-(--border) rounded-full hover:border-(--accent) hover:shadow-md transition-all duration-300 text-custom-80 hover:text-(--accent) cursor-pointer group"
           >
-            <RefreshCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
-            <span className="font-medium">Isa pa!</span>
+            <RefreshCcw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-700" />
+            <span className="font-medium text-lg">Tell me another</span>
           </button>
         </div>
 
         <div className="w-full h-px bg-linear-to-r from-transparent via-(--border) to-transparent" />
 
         {/* SECTION 2: THE CONVERSATIONAL QUIZ */}
-        <div className="max-w-3xl mx-auto w-full bg-(--code-bg) border border-(--border) rounded-3xl p-6 sm:p-10 shadow-lg relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-            <Sparkles className="w-24 h-24 text-(--accent)" />
+        <div className="max-w-3xl mx-auto w-full bg-(--code-bg) border border-(--border) rounded-[2rem] p-8 sm:p-12 shadow-xl relative overflow-hidden flex flex-col min-h-[450px]">
+          <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
+            <Sparkles className="w-32 h-32 text-(--accent)" />
           </div>
 
-          <h2 className="text-2xl font-heading font-bold text-header mb-2 relative z-10">
-            How Well Do You Know Us? 🧠
-          </h2>
-          <p className="text-custom-80 mb-8 relative z-10">
-            Tignan natin kung gaano mo natatandaan yung mga details natin. No
-            cheating!
-          </p>
+          <div className="relative z-10 mb-10 text-center">
+            <h2 className="text-3xl font-heading font-bold text-header mb-4">
+              How Well Do You Know Us?
+            </h2>
+            <p className="text-custom-80 text-lg">
+              Tignan natin kung gaano mo natatandaan yung mga details natin. No
+              cheating!
+            </p>
+          </div>
 
-          <AnimatePresence mode="wait">
-            {quizState === "playing" && (
+          {/* Progress Bar Container */}
+          {quizState !== "finished" && (
+            <div className="w-full h-2 bg-(--bg) rounded-full mb-10 overflow-hidden border border-(--border)">
               <motion.div
-                key="playing"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-              >
-                <p className="font-medium text-lg text-header mb-4">
-                  {currentQ + 1}. {quizData[currentQ].question}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {quizData[currentQ].options.map((opt, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleAnswer(idx)}
-                      className="text-left px-5 py-4 rounded-xl border border-(--border) bg-(--bg) hover:border-(--accent) hover:bg-(--accent-bg) transition-all cursor-pointer text-custom-80 font-medium"
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
+                className="h-full bg-linear-to-r from-(--accent) to-[#c084fc]"
+                initial={{ width: 0 }}
+                animate={{ width: `${progressPercentage}%` }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              />
+            </div>
+          )}
 
-            {quizState === "feedback" && (
-              <motion.div
-                key="feedback"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center text-center py-6"
-              >
-                {lastAnswerCorrect ? (
-                  <CheckCircle2 className="w-16 h-16 text-green-500 mb-4" />
-                ) : (
-                  <XCircle className="w-16 h-16 text-rose-500 mb-4" />
-                )}
-                <p className="text-xl font-medium text-header mb-6">
-                  {lastAnswerCorrect
-                    ? quizData[currentQ].correctMsg
-                    : quizData[currentQ].wrongMsg}
-                </p>
-                <button
-                  onClick={nextQuestion}
-                  className="px-8 py-3 bg-(--accent) text-white rounded-full font-medium hover:scale-105 transition-transform cursor-pointer"
+          <div className="flex-1 flex flex-col justify-center relative z-10">
+            <AnimatePresence mode="wait">
+              {quizState === "playing" && (
+                <motion.div
+                  key="playing"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="w-full"
                 >
-                  Next Question
-                </button>
-              </motion.div>
-            )}
-
-            {quizState === "finished" && (
-              <motion.div
-                key="finished"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center py-6"
-              >
-                <h3 className="text-3xl font-heading font-bold text-(--accent) mb-4">
-                  Score mo: {score} / {quizData.length}
-                </h3>
-                {score === quizData.length ? (
-                  <div className="bg-(--accent-bg) p-6 rounded-2xl border border-(--accent-border) mt-4">
-                    <p className="font-bold text-header mb-2">
-                      🎉 Perfect Score Reward Unlocked! 🎉
-                    </p>
-                    <p className="text-custom-80 text-sm">
-                      Kabisado mo talaga tayo ha! Dahil dyan, promise ko lilibre
-                      kita ng paborito mong pagkain sa next date natin.
-                      Screenshot mo 'to as proof!
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-custom-80">
-                    Okay lang yan, bawi ka next time! At least alam kong love mo
-                    pa rin ako hahaha.
+                  <p className="font-medium text-xl text-header mb-8 text-center px-4">
+                    <span className="text-(--accent) mr-2">
+                      Q{currentQ + 1}.
+                    </span>
+                    {quizData[currentQ].question}
                   </p>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {quizData[currentQ].options.map((opt, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleAnswer(idx)}
+                        className="text-left px-6 py-5 rounded-2xl border border-(--border) bg-(--bg) hover:border-(--accent) hover:bg-(--accent-bg) hover:scale-[1.02] active:scale-95 transition-all duration-200 cursor-pointer text-custom-80 font-medium text-lg shadow-sm"
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {quizState === "feedback" && (
+                <motion.div
+                  key="feedback"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex flex-col items-center text-center py-10"
+                >
+                  {lastAnswerCorrect ? (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring" }}
+                    >
+                      <CheckCircle2 className="w-24 h-24 text-green-500 mb-8 drop-shadow-md" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring" }}
+                    >
+                      <XCircle className="w-24 h-24 text-rose-500 mb-8 drop-shadow-md" />
+                    </motion.div>
+                  )}
+
+                  <p className="text-2xl font-medium text-header mb-12 leading-relaxed px-4 max-w-xl">
+                    {lastAnswerCorrect
+                      ? quizData[currentQ].correctMsg
+                      : quizData[currentQ].wrongMsg}
+                  </p>
+
+                  <button
+                    onClick={nextQuestion}
+                    className="px-10 py-4 bg-linear-to-r from-(--accent) to-[#c084fc] text-white rounded-full font-medium text-lg hover:shadow-[0_0_20px_rgba(170,59,255,0.4)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                  >
+                    Next Question
+                  </button>
+                </motion.div>
+              )}
+
+              {quizState === "finished" && (
+                <motion.div
+                  key="finished"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center py-8"
+                >
+                  <h3 className="text-4xl font-heading font-bold text-header mb-6">
+                    Quiz Complete!
+                  </h3>
+                  <div className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-(--bg) border border-(--border) rounded-full mb-8">
+                    <span className="text-custom-80 text-lg">Final Score:</span>
+                    <span className="text-2xl font-bold text-(--accent)">
+                      {score} / {quizData.length}
+                    </span>
+                  </div>
+
+                  {score === quizData.length ? (
+                    <div className="bg-(--accent-bg) p-8 rounded-3xl border border-(--accent-border) max-w-lg mx-auto shadow-sm">
+                      <p className="font-bold text-2xl text-header mb-4 flex items-center justify-center gap-2">
+                        🎉 Perfect Score! 🎉
+                      </p>
+                      <p className="text-custom-80 text-base leading-relaxed">
+                        Kabisado mo talaga tayo ha! Dahil dyan, promise ko
+                        lilibre kita ng paborito mong pagkain sa next date
+                        natin. Screenshot mo 'to as proof!
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-custom-80 text-lg max-w-md mx-auto">
+                      Okay lang yan, bawi ka next time! At least alam kong love
+                      mo pa rin ako hahaha.
+                    </p>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
         <div className="w-full h-px bg-linear-to-r from-transparent via-(--border) to-transparent" />
 
-        {/* SECTION 3: OPEN WHEN LETTERS (3x3 Grid) */}
+        {/* SECTION 3: OPEN WHEN LETTERS */}
         <div>
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-heading font-bold text-header mb-3">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-heading font-bold text-header mb-4">
               Open When... 💌
             </h2>
-            <p className="text-custom-80">
-              Promise mo muna na bubuksan mo lang 'to pag kailangan mo talaga?{" "}
-              <br className="hidden sm:block" /> (I mean, pwede mo rin dayain,
-              pero promise muna!)
+            <p className="text-custom-80 text-lg max-w-xl mx-auto">
+              Promise mo muna na bubuksan mo lang 'to pag kailangan mo talaga
+              ha. (I mean, pwede mo rin dayain, pero promise muna!)
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {letters.map((letter) => {
               const isOpen = openedLetters.includes(letter.id);
 
@@ -310,39 +353,41 @@ function Interactive() {
                 >
                   <motion.div
                     onClick={() => toggleLetter(letter.id)}
-                    className={`cursor-pointer w-full p-6 rounded-2xl border transition-all duration-500 h-full min-h-[180px] flex flex-col items-center justify-center text-center ${
+                    className={`cursor-pointer w-full p-8 rounded-3xl border transition-all duration-500 h-full min-h-[220px] flex flex-col items-center justify-center text-center ${
                       isOpen
-                        ? "bg-(--bg) border-(--accent) shadow-md"
-                        : "bg-(--code-bg) border-(--border) hover:border-(--accent-border) hover:shadow-lg"
+                        ? "bg-(--bg) border-(--accent) shadow-lg"
+                        : "bg-(--code-bg) border-(--border) hover:border-(--accent-border) hover:shadow-xl hover:-translate-y-1"
                     }`}
                   >
                     {!isOpen ? (
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="flex flex-col items-center"
+                        className="flex flex-col items-center w-full"
                       >
-                        <Mail className="w-10 h-10 text-(--accent) mb-4 opacity-80" />
-                        <h3 className="font-medium text-header">
+                        <Mail className="w-12 h-12 text-(--accent) mb-6 opacity-80" />
+                        <h3 className="font-medium text-lg text-header px-2">
                           {letter.title}
                         </h3>
-                        <span className="text-xs text-custom-80 mt-4 uppercase tracking-widest font-mono">
+                        <span className="text-xs text-custom-80 mt-6 uppercase tracking-widest font-mono bg-(--bg) px-3 py-1 rounded-full border border-(--border)">
                           Tap to Open
                         </span>
                       </motion.div>
                     ) : (
                       <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="flex flex-col items-center h-full justify-center"
+                        className="flex flex-col items-center h-full justify-start w-full"
                       >
-                        <MailOpen className="w-6 h-6 text-pink-400 mb-3" />
-                        <h3 className="font-medium text-header text-sm mb-3 border-b border-(--border) pb-2 w-full">
+                        <MailOpen className="w-8 h-8 text-pink-400 mb-4 shrink-0" />
+                        <h3 className="font-semibold text-header text-base mb-4 border-b border-(--border) pb-3 w-full shrink-0">
                           {letter.title}
                         </h3>
-                        <p className="text-custom-80 text-sm leading-relaxed italic">
-                          "{letter.content}"
-                        </p>
+                        <div className="overflow-y-auto max-h-[200px] w-full px-1 custom-scrollbar">
+                          <p className="text-custom-80 text-sm leading-loose italic text-justify">
+                            "{letter.content}"
+                          </p>
+                        </div>
                       </motion.div>
                     )}
                   </motion.div>

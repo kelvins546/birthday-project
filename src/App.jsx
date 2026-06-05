@@ -61,7 +61,10 @@ function App() {
             exit={{ opacity: 0 }}
             className="w-full relative z-10"
           >
-            <CountdownGate onUnlock={handleGateUnlock} />
+            <CountdownGate
+              onUnlock={handleGateUnlock}
+              onBack={() => setView("intro")}
+            />
           </motion.div>
         )}
 
@@ -78,7 +81,7 @@ function App() {
                 Our Memory Sandbox <span className="animate-pulse">✨</span>
               </span>
               <div className="text-xs font-mono text-(--accent) bg-(--accent-bg) px-2.5 py-1 rounded-sm border border-(--accent-border)">
-                06.15.2026
+                06.06.2026
               </div>
             </header>
 
