@@ -1,58 +1,96 @@
 export const BRID_DATA = {
   // Personal Details
   herName: "My Love", // Put her name here!
-  birthdayDate: "2026-06-15", // Used for a countdown if you want one
+  birthdayDate: "2026-06-06", // Used for a countdown if you want one
 
   // Chapter 1: The Relationship Timeline
   timeline: [
     {
-      date: "October 12, 2024",
-      title: "The First Hello",
+      date: "March 31, 2022",
+      title: "Where It All Began",
       description:
-        "When our paths crossed for the very first time. I didn't know it yet, but my life was about to change completely.",
+        "looking back at this 9:40 PM message... wala akong idea na isang simpleng 'hihi' lang would lead to the best thing that ever happened to me. best decision ever.",
       image: "/images/first-meet.jpg", // Place actual images in public/images/
     },
     {
-      date: "December 25, 2024",
-      title: "First Date Magic",
+      date: "April 3, 2022",
+      title: "Our First Picture Together",
       description:
-        "Spilling coffee, nervous laughs, and realizing that hours felt like minutes when I was with you.",
+        "our very first pic sa kapilya! kahit nakamask tayo at kalahati lang ng mukha natin ang kita, i still remember how incredibly happy i was na makasama ka that day",
       image: "/images/first-date.jpg",
     },
     {
-      date: "April 14, 2025",
-      title: "Making it Official",
+      date: "May 9, 2026", // Adjust this date!
+      title: "Nature Trips & Deep Talks",
       description:
-        "The moment you made me the happiest person alive by agreeing to walk this journey by my side.",
-      image: "/images/official.jpg",
+        "after four years, ito yung unang pagkakataon na nag usap at nagkasama tayo ulit. hindi ko alam kung bakit, pero parang walang nag bago. kahit simpleng pagkain lang at kwentuhan, pakiramdam ko kompleto na yung araw ko. looking back, i realized it wasn't the place or what we did that made it special, it was simply because i was with you.",
+      image: "/images/first-gala.jpg", // Add this image to public/images/
+    },
+    {
+      date: "May 25, 2026", // Adjust this date!
+      title: "Late Night Rides",
+      description:
+        "napapangiti na lang ako kasi kahit may tampuhan at pagod, ang ending, gusto pa rin nating ayusin at umuwi nang magkasama. isa 'yon sa mga gabing pinatunayan sakin na kahit hindi tayo perfect, ikaw pa rin yung gusto kong makasama.",
+      image: "/images/late-night.jpg", // Add this image to public/images/
+    },
+    {
+      date: "May 16, 2026", // Adjust this date!
+      title: "Simple Moments",
+      description:
+        "kahit walang special occasion, just spending a normal day with you is already a core memory for me. i love how comfortable and safe everything feels pag andyan ka.",
+      image: "/images/simple-moments.jpg", // Add this image to public/images/
+    },
+    {
+      date: "May 30, 2026", // Adjust this date!
+      title: "My Favorite Rest",
+      description:
+        "through all the stress sa work and life, ikaw yung naging pahinga ko. just seeing your messages or talking to you makes all the heavy days feel so much lighter.",
+      image: "/images/my-peace.jpg", // Add this image to public/images/
+    },
+
+    {
+      date: "june 1, 2026", // Adjust this date!
+      title: "Always Choosing You",
+      description:
+        "looking back sa dami ng napag-usapan at pinagdaanan natin from 2022 until now, mas lalo lang lumalim yung pagtingin ko sayo. every single day, i'm just so glad you are in my life.",
+      image: "/images/always-you.jpg", // Add this image to public/images/
+    },
+    {
+      date: "Someday... ⏳",
+      title: "To Be Unlocked 🔒",
+      description:
+        "wala pa man tayong label ngayon, i want you to know na i'm always willing to wait. no pressure at all. i'm just really looking forward to the day na ma-unlock natin 'tong next chapter together. 💛",
+      image:
+        "https://images.unsplash.com/photo-1614031679227-0136ea5eb2b9?w=600&auto=format&fit=crop&q=60",
     },
   ],
 
   // Chapter 2: The Photo Gallery Categorized
+  // Chapter 2: The Photo Gallery Categorized
   gallery: [
     {
       id: 1,
-      src: "/images/gallery-1.jpg",
-      category: "Adventures",
-      caption: "Chasing sunsets with you.",
+      src: "/images/jollibee.jpg", // Replace with your actual image filename
+      category: "Food Trips",
+      caption: "ang paborito nating go-to!",
     },
     {
       id: 2,
-      src: "/images/gallery-2.jpg",
-      category: "Date Nights",
-      caption: "Dressed up but only looking at you.",
+      src: "/images/mixue.jpg", // Replace with your actual image filename
+      category: "Food Trips",
+      caption: "sweet cravings satisfied",
     },
     {
       id: 3,
-      src: "/images/gallery-3.jpg",
-      category: "Silly Moments",
-      caption: "Your laugh is my absolute favorite sound.",
+      src: "/images/inasal.jpg", // Replace with your actual image filename
+      category: "Food Trips",
+      caption: "inasal dates",
     },
     {
       id: 4,
-      src: "/images/gallery-4.jpg",
-      category: "Adventures",
-      caption: "Every road trip is better in the passenger seat next to you.",
+      src: "/images/angels-burger.jpg", // Replace with your actual image filename
+      category: "Food Trips",
+      caption: "late-night cravings!",
     },
   ],
 
@@ -100,18 +138,19 @@ export const BRID_DATA = {
       title: "When you need a laugh",
       emoji: "🤡",
       message:
-        "Remember that time we tried to take a serious photo and a bird completely ruined the shot? Yeah, I'm always ready to act completely ridiculous just to see you smile.",
+        "Remember that time we tried to take a serious photo and a bird cofletely ruined the shot? Yeah, I'm always ready to act completely ridiculous just to see you smile.",
     },
   ],
 
   // Final Chapter: The Main Birthday Message & Promises
+  // Final Chapter: The Main Birthday Message & The Big Question
   loveLetter: {
     greeting: "Happy Birthday, Beautiful.",
     paragraphs: [
-      "Today is entirely about celebrating the incredible human being you are. You bring an unmatched warmth into my world, turning ordinary moments into core memories.",
-      "Thank you for your infinite patience, your brilliant mind, and the simple beauty of your smile. Growing alongside you has been the greatest highlight of my life.",
-      "On your special day, I promise to always stand by your side, listen when things get heavy, and celebrate every win with you—no matter how small.",
+      "Today is all about celebrating you. Ever since you came into my life, everything just got brighter. Yung mga simpleng araw, nagiging special core memories just because you're there.",
+      "I built this space from scratch because I wanted to show you how much I value every moment we've shared. Pero higit pa doon, I wanted a special way to be completely honest about how I feel.",
+      "You are so incredibly important to me. Kaya sa special day mong 'to, I want to take a step forward. Gusto kitang ligawan. Gusto kong patunayan sa'yo araw-araw na seryoso ako, and I want to do this right. Sabi ko nga dun sa timeline natin, I am always willing to wait, pero gusto ko lang malaman mo na ikaw na talaga yung gusto ko.",
     ],
-    closing: "Forever & Always, Yours.",
+    closing: "Can I officially court you?",
   },
 };

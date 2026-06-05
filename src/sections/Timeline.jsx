@@ -20,11 +20,10 @@ function Timeline() {
         </div>
 
         {/* The Vertical Timeline Structure */}
-        <div className="relative border-l border-(--border) ml-4 sm:mx-auto sm:border-l-2 sm:dashed">
+        {/* The Vertical Timeline Structure - Fixed mobile margin (ml-6 instead of ml-4) */}
+        <div className="relative border-l border-(--border) ml-6 sm:mx-auto sm:border-l-2 sm:dashed">
           {BRID_DATA.timeline.map((item, index) => {
             const isEven = index % 2 === 0;
-
-            // FIXED: Dynamically toggle clean, conflict-free layout coordinates
             const dotPlacement = isEven
               ? "absolute left-0 -translate-x-1/2"
               : "absolute left-0 -translate-x-1/2 sm:left-full";
@@ -34,20 +33,20 @@ function Timeline() {
                 key={index}
                 className="relative mb-16 sm:mb-24 last:mb-0 sm:w-1/2 sm:ml-auto sm:odd:mr-auto sm:odd:ml-0 sm:odd:text-right"
               >
-                {/* Glowing Node Point on Timeline */}
+                {/* Glowing Node Point */}
                 <div
                   className={`${dotPlacement} top-1.5 w-10 h-10 rounded-full bg-(--bg) border-2 border-(--accent) flex items-center justify-center z-10 shadow-xs`}
                 >
                   <Calendar className="w-4 h-4 text-(--accent)" />
                 </div>
 
-                {/* Card Container with Scroll Animation */}
+                {/* Card Container - Adjusted left padding (pl-6) */}
                 <motion.div
                   initial={{ opacity: 0, x: isEven ? 50 : -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="pl-8 sm:pl-0 sm:px-8"
+                  className="pl-6 sm:pl-0 sm:px-8"
                 >
                   <div className="bg-(--bg) p-6 rounded-2xl border border-(--border) shadow-(--shadow) hover:border-(--accent-border) transition-colors duration-300">
                     <span className="inline-block text-xs font-mono font-semibold px-2.5 py-0.5 rounded-sm bg-(--code-bg) text-header mb-3">
@@ -61,11 +60,14 @@ function Timeline() {
                     </p>
 
                     {/* Image Container */}
-                    <div className="w-full h-48 sm:h-56 overflow-hidden rounded-xl bg-(--code-bg) border border-(--border) relative group">
+                    {/* Image Container - FIXED CROPPING */}
+                    {/* Removed fixed heights (h-48) and replaced with natural scaling */}
+                    <div className="w-full rounded-xl bg-(--bg) border border-(--border) relative group overflow-hidden flex items-center justify-center p-2">
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        // w-full and h-auto allows the image to fit its natural shape without cutting off text!
+                        className="w-full h-auto max-h-72 object-contain rounded-lg transition-transform duration-500 group-hover:scale-105"
                         onError={(e) => {
                           e.target.src =
                             "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=60";
