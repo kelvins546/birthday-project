@@ -13,7 +13,8 @@ import FloatingHearts from "./components/FloatingHearts";
 
 function App() {
   const [view, setView] = useState(() => {
-    if (window.location.pathname === "/keychain") {
+    // This is now bulletproof. It will catch "/keychain", "/keychain/", or any QR code tracking tags!
+    if (window.location.pathname.includes("keychain")) {
       return "keychain";
     }
     return "landing";
