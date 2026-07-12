@@ -7,23 +7,27 @@ import Timeline from "./sections/Timeline";
 import Gallery from "./sections/Gallery";
 import Interactive from "./sections/Interactive";
 import LoveLetter from "./sections/LoveLetter";
+import KeychainLetter from "./sections/KeychainLetter";
 import AudioPlayer from "./components/AudioPlayer";
 import FloatingHearts from "./components/FloatingHearts";
 
 function App() {
-  const [view, setView] = useState("landing");
+  const [view, setView] = useState(() => {
+    if (window.location.pathname === "/keychain") {
+      return "keychain";
+    }
+    return "landing";
+  });
+
   const [musicStarted, setMusicStarted] = useState(false);
 
-  // Triggered on the very first click on the homepage (Landing -> Intro)
   const handleInitialStart = () => {
-    // Music is no longer started here. It waits for the gate!
     setView("intro");
   };
 
-  // Triggered when she clicks "Unlock the Surprise" OR when you use the 5-tap bypass
   const handleGateUnlock = () => {
-    setMusicStarted(true); // Fades in the Ben&Ben song!
-    setView("main"); // Reveals the story timeline
+    setMusicStarted(true);
+    setView("main");
   };
 
   return (
@@ -100,9 +104,31 @@ function App() {
             </footer>
           </motion.div>
         )}
+
+        {view === "keychain" && (
+          <motion.div
+            key="keychain"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-full flex flex-col relative z-10 min-h-screen"
+          >
+            {/* FIXED BACK BUTTON SPACING */}
+            <div className="fixed top-4 left-4 sm:top-8 sm:left-8 z-50">
+              <button
+                onClick={() => {
+                  window.location.href = "/";
+                }}
+                className="flex items-center gap-2 text-sm font-mono text-custom-80 hover:text-(--accent) transition-colors bg-(--bg)/80 backdrop-blur-md px-5 py-2.5 rounded-full border border-(--border) shadow-sm cursor-pointer"
+              >
+                ← Back to Home
+              </button>
+            </div>
+
+            <KeychainLetter onOpen={() => setMusicStarted(true)} />
+          </motion.div>
+        )}
       </AnimatePresence>
 
-      {/* BACKGROUND MUSIC PLAYER */}
       <AudioPlayer playTrigger={musicStarted} />
     </div>
   );
