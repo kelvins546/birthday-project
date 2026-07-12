@@ -7,9 +7,9 @@ function KeychainLetter({ onOpen }) {
 
   // Refined, more emotional Taglish message
   const paragraphs = [
-    "This keychain carries some of my absolute favorite memories of us. Sana kapag tinitignan mo 'to, maalala mo na sa kabila ng lahat ng sakit, we shared something genuinely beautiful. At sana... hindi pa 'yun ang huling mga alaalang mabubuo natin.",
-    "I don't know exactly what the coming days will look like, and I won't rush you into making everything okay again. Ang tanging hiling ko lang ngayon ay makita mo yung sincerity ko na bumawi at magbago. Gusto kong patunayan sa gawa na kaya kitang mahalin nang mas tama—the way you truly deserve.",
-    "Mahal na mahal kita. Kung bibigyan mo pa ako ng isa pang pagkakataon, I would choose you every single day. Hindi dahil madali, kundi dahil ikaw lang yung taong gusto kong piliin, paulit-ulit.",
+    "this keychain carries some of my absolute favorite memories of us. sana kapag tinitignan mo 'to, maalala mo na sa kabila ng lahat ng sakit, we shared something genuinely beautiful. at sana... hindi pa 'yun ang huling mga alaalang mabubuo natin.",
+    "hindi ko alam kung ano ang mangyayari sa mga susunod na araw. hindi ko rin hihilingin na maging okay agad ang lahat. ang tanging hiling ko lang ngayon ay makita mo yung sincerity ko na bumawi at magbago. gusto kong patunayan sa gawa na kaya kitang mahalin nang mas tama. the way you truly deserve.",
+    "mahal na mahal kita. and i would choose u every single day. hindi dahil madali, kundi dahil ikaw lang yung taong gusto kong piliin, piliit nang paulit ulit.",
   ];
 
   const handleReveal = () => {
